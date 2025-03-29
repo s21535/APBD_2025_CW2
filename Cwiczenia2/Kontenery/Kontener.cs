@@ -2,19 +2,19 @@ namespace Cwiczenia2.Kontenery;
 
 public abstract class Kontener
 {
-    protected float CargoMass {get; private set;}
-    protected float OwnMass {get; private set;}
-    protected float MaximumLoadMass {get; private set;}
-    protected float Height {get; private set;}
-    protected float Depth {get;private set;}
-    protected string SerialNumber {get;private set;}
+    protected float CargoMass {get;set;}
+    protected float OwnMass {get;set;}
+    protected float MaximumLoadMass {get;set;}
+    protected float Height {get;set;}
+    protected float Depth {get;set;}
+    protected virtual string SerialNumber { get; set; }
 
-    protected void UnloadCargo()
+    protected virtual void UnloadCargo()
     {
         CargoMass = 0;
     }
 
-    protected void LoadCargo(float mass)
+    protected virtual void LoadCargo(float mass)
     {
         if ((mass + CargoMass <= MaximumLoadMass))
         {
