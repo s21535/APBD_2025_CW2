@@ -7,7 +7,25 @@ public abstract class Kontener
     protected float MaximumLoadMass {get;set;}
     protected float Height {get;set;}
     protected float Depth {get;set;}
-    protected virtual string SerialNumber { get; set; }
+
+    protected string SerialNumber
+    {
+        get
+        {
+            return SerialNumber;
+        }
+        set
+        {
+            if (SerialNumber != null)
+            {
+                return;
+            }
+            else
+            {
+                SerialNumber = value;
+            }
+        }
+    }
 
     protected virtual void UnloadCargo()
     {
@@ -21,4 +39,5 @@ public abstract class Kontener
             throw new Exception("OverfillException");
         }
     }
+    
 }

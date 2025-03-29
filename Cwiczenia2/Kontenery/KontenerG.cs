@@ -1,33 +1,29 @@
 namespace Cwiczenia2.Kontenery;
 
-public class KontenerL : Kontener, IHazardNotifier
+public class KontenerG : Kontener,IHazardNotifier
 {
-    private bool _hasHazardCargo;
+    private float _pressure;
     private static int _Number = 0;
     
-    public KontenerL(float ownMass, float maximumLoadMass, float height, float depth, bool hasHazardCargo)
+    public KontenerG(float ownMass, float maximumLoadMass, float height, float depth, float pressure)
     {
         _Number += 1;
-        SerialNumber = string.Concat("KON","-","L","-",_Number);
+        SerialNumber = string.Concat("KON","-","G","-",_Number);
         OwnMass = ownMass;
         MaximumLoadMass = maximumLoadMass;
         Height = height;
         Depth = depth;
-        _hasHazardCargo = hasHazardCargo;
+        _pressure = pressure;
     }
-
+    
     public void EmergencyNotification()
     {
         Console.WriteLine("Dangerous Incident at container: " + SerialNumber);
     }
-
+    
     protected override void LoadCargo(float mass)
     {
-        if (_hasHazardCargo && (mass + CargoMass > (MaximumLoadMass/2)))
-        {
-            EmergencyNotification();
-        }
-        else if (!_hasHazardCargo && (mass + CargoMass > MaximumLoadMass * 0.9f))
+        if (mass + CargoMass > (MaximumLoadMass))
         {
             EmergencyNotification();
         }
@@ -36,4 +32,10 @@ public class KontenerL : Kontener, IHazardNotifier
             CargoMass += mass;
         }
     }
+
+    protected void UnloadCargo()
+    {
+        CargoMass = CargoMass * 0.05f;
+    }
+    
 }
