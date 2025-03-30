@@ -2,8 +2,8 @@ namespace Cwiczenia2.Kontenery;
 
 public abstract class Kontener
 {
-    protected float CargoMass {get;set;}
-    protected float OwnMass {get;set;}
+    public float CargoMass {get;protected set;}
+    public float OwnMass {get;protected set;}
     protected float MaximumLoadMass {get;set;}
     protected float Height {get;set;}
     protected float Depth {get;set;}
